@@ -1,3 +1,3 @@
 require 'paymentrails/Gateway'
 require 'paymentrails/Configuration'
-require 'paymentrails/BalanceGateway'
+require 'paymentrails/Balance_Gateway'
