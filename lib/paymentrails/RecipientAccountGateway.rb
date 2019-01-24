@@ -36,7 +36,7 @@ class RecipientAccountGateway
     data.each do |key, value|
       next unless key === 'account'
       value.each do |recipKey, recipValue|
-        recipient_account.send("#{recipKey}=", recipValue)
+        recipient_account.send("#{recipKey}=", recipValue) if recipient_account.respond_to?("#{recipKey}=")
       end
     end
     recipient_account
@@ -51,7 +51,7 @@ class RecipientAccountGateway
       value.each do |newKey, _newValue|
         recipient_account = RecipientAccount.new
         newKey.each do |key1, value1|
-          recipient_account.send("#{key1}=", value1)
+          recipient_account.send("#{key1}=", value1) if recipient_account.respond_to?("#{key1}=")
         end
         recipient_accounts.push(recipient_account)
       end

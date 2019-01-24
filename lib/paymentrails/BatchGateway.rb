@@ -51,7 +51,7 @@ class BatchGateway
     data.each do |key, value|
       next unless key === 'batch'
       value.each do |newKey, newValue|
-        batch.send("#{newKey}=", newValue)
+        batch.send("#{newKey}=", newValue) if batch.respond_to?("#{newKey}=")
       end
     end
     batch
@@ -64,7 +64,7 @@ class BatchGateway
     data.each do |key, value|
       next unless key === 'batchSummary'
       value.each do |newKey, newValue|
-        summary.send("#{newKey}=", newValue)
+        summary.send("#{newKey}=", newValue) if summary.respond_to?("#{newKey}=")
       end
     end
     summary
@@ -79,7 +79,7 @@ class BatchGateway
       value.each do |newKey, _newValue|
         batch = Batch.new
         newKey.each do |key1, value1|
-          batch.send("#{key1}=", value1)
+          batch.send("#{key1}=", value1) if batch.respond_to?("#{key1}=")
         end
         batches.push(batch)
       end

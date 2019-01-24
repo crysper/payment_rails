@@ -36,7 +36,7 @@ class PaymentGateway
     data.each do |key, value|
       next unless key === 'payment'
       value.each do |recipKey, recipValue|
-        payment.send("#{recipKey}=", recipValue)
+        payment.send("#{recipKey}=", recipValue) if payment.respond_to?("#{recipKey}=")
       end
     end
     payment
@@ -51,7 +51,7 @@ class PaymentGateway
       value.each do |newKey, _newValue|
         payment = Payment.new
         newKey.each do |key1, value1|
-          payment.send("#{key1}=", value1)
+          payment.send("#{key1}=", value1) if payment.respond_to?("#{key1}=")
         end
         payments.push(payment)
       end
